@@ -6,7 +6,7 @@ helm install prometheus edu/prometheus \
 --set alertmanager.enabled=false \
 --set nodeExporter.tolerations[0].key=node-role.kubernetes.io/control-plane \
 --set nodeExporter.tolerations[0].effect=NoSchedule \
---set nodeExporter.tolerations[0].operator=Exist \
+--set nodeExporter.tolerations[0].operator=Exists \
 --set server.securityContext.runAsGroup=1000 \
 --set server.securityContext.runAsUser=1000 \
 --set server.securityContext.runAsNonRoot=false \

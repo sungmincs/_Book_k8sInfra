@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deploy-alpine-ndots3
+  name: deploy-alpine-ndots3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deploy-alpine-ndots3
+  template:
+    metadata:
+      labels:
+        app: deploy-alpine-ndots3
+    spec:
+      containers:
+      - image: alpine:3.21.3
+        name: alpine
+        command:
+          - sleep
+          - infinity
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "3"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deploy-alpine
+  name: deploy-alpine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deploy-alpine
+  template:
+    metadata:
+      labels:
+        app: deploy-alpine
+    spec:
+      containers:
+      - image: alpine:3.21.3
+        name: alpine
+        command:
+          - sleep
+          - infinity

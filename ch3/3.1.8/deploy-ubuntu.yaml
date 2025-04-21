@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deploy-ubuntu-ndots3
+  name: deploy-ubuntu-ndots3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deploy-ubuntu-ndots3
+  template:
+    metadata:
+      labels:
+        app: deploy-ubuntu-ndots3
+    spec:
+      containers:
+      - image: ubuntu:24.04
+        name: ubuntu
+        command:
+          - sleep
+          - infinity
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "3"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deploy-ubuntu
+  name: deploy-ubuntu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deploy-ubuntu
+  template:
+    metadata:
+      labels:
+        app: deploy-ubuntu
+    spec:
+      containers:
+      - image: ubuntu:24.04
+        name: ubuntu
+        command:
+          - sleep
+          - infinity
